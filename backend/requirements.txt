@@ -1,0 +1,12 @@
+Django>=5.2.8,<5.3
+djangorestframework>=3.16,<3.17
+drf-spectacular[sidecar]>=0.28,<0.30
+django-cors-headers>=4.7,<5
+channels[daphne]>=4.2,<5
+channels-redis>=4.2,<5
+psycopg[binary]>=3.2,<4
+PyJWT>=2.10,<3
+Pillow>=11,<13
+openpyxl>=3.1,<4
+reportlab>=4.4,<5
+ruff>=0.12,<1

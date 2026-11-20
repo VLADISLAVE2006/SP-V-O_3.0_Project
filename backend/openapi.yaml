@@ -1,0 +1,1995 @@
+openapi: 3.0.3
+info:
+  title: Система опросов API
+  version: 1.0.0
+  description: REST API проекта команды КАРАСИКИ. Пути без завершающего слеша.
+paths:
+  /api/admin/users:
+    get:
+      operationId: admin_users_retrieve
+      parameters:
+      - in: query
+        name: limit
+        schema:
+          type: integer
+      - in: query
+        name: offset
+        schema:
+          type: integer
+      - in: query
+        name: q
+        schema:
+          type: string
+      - in: query
+        name: status
+        schema:
+          type: string
+          enum:
+          - admins
+          - all
+          - banned
+          - moderators
+          - users
+      tags:
+      - Администрирование
+      security:
+      - bearerAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserPage'
+          description: ''
+  /api/admin/users/{id}/ban:
+    post:
+      operationId: admin_users_ban_create
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - Администрирование
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BanInputRequest'
+      security:
+      - bearerAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Profile'
+          description: ''
+  /api/admin/users/{id}/bans:
+    get:
+      operationId: admin_users_bans_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      - in: query
+        name: limit
+        schema:
+          type: integer
+      - in: query
+        name: offset
+        schema:
+          type: integer
+      tags:
+      - Администрирование
+      security:
+      - bearerAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BanPage'
+          description: ''
+  /api/admin/users/{id}/role:
+    patch:
+      operationId: admin_users_role_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - Администрирование
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedRoleInputRequest'
+      security:
+      - bearerAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Profile'
+          description: ''
+  /api/admin/users/{id}/unban:
+    post:
+      operationId: admin_users_unban_create
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - Администрирование
+      security:
+      - bearerAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Profile'
+          description: ''
+  /api/auth/login:
+    post:
+      operationId: auth_login_create
+      tags:
+      - Авторизация
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginRequest'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthResult'
+          description: ''
+  /api/auth/logout:
+    post:
+      operationId: auth_logout_create
+      tags:
+      - Авторизация
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RefreshRequest'
+        required: true
+      security:
+      - bearerAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/auth/refresh:
+    post:
+      operationId: auth_refresh_create
+      tags:
+      - Авторизация
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RefreshRequest'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tokens'
+          description: ''
+  /api/auth/register:
+    post:
+      operationId: auth_register_create
+      tags:
+      - Авторизация
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegisterRequest'
+        required: true
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthResult'
+          description: ''
+  /api/comments/{id}:
+    patch:
+      operationId: comments_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - Комментарии
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedCommentEditRequest'
+      security:
+      - bearerAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Comment'
+          description: ''
+    delete:
+      operationId: comments_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - Комментарии
+      security:
+      - bearerAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/comments/{id}/like:
+    post:
+      operationId: comments_like_create
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - Комментарии
+      security:
+      - bearerAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LikeResult'
+          description: ''
+    delete:
+      operationId: comments_like_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - Комментарии
+      security:
+      - bearerAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/health:
+    get:
+      operationId: health_retrieve
+      tags:
+      - Служебное
+      security:
+      - bearerAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: {}
+          description: ''
+  /api/moderation/comments/{id}/delete:
+    post:
+      operationId: moderation_comments_delete_create
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - Модерация
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ModerationDeleteRequest'
+      security:
+      - bearerAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/moderation/polls/{slug}/delete:
+    post:
+      operationId: moderation_polls_delete_create
+      parameters:
+      - in: path
+        name: slug
+        schema:
+          type: string
+        required: true
+      tags:
+      - Модерация
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ModerationDeleteRequest'
+      security:
+      - bearerAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/moderation/reports:
+    get:
+      operationId: moderation_reports_retrieve
+      parameters:
+      - in: query
+        name: limit
+        schema:
+          type: integer
+      - in: query
+        name: offset
+        schema:
+          type: integer
+      - in: query
+        name: status
+        schema:
+          type: string
+          enum:
+          - accepted
+          - new
+          - rejected
+      tags:
+      - Модерация
+      security:
+      - bearerAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReportPage'
+          description: ''
+  /api/moderation/reports/{id}:
+    patch:
+      operationId: moderation_reports_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - Модерация
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedReviewRequest'
+      security:
+      - bearerAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Report'
+          description: ''
+  /api/moderation/users/{id}/warnings:
+    get:
+      operationId: moderation_users_warnings_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      - in: query
+        name: limit
+        schema:
+          type: integer
+      - in: query
+        name: offset
+        schema:
+          type: integer
+      tags:
+      - Модерация
+      security:
+      - bearerAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WarningPage'
+          description: ''
+    post:
+      operationId: moderation_users_warnings_create
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - Модерация
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReasonRequest'
+        required: true
+      security:
+      - bearerAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WarningResult'
+          description: ''
+  /api/moderation/warnings/{id}:
+    delete:
+      operationId: moderation_warnings_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - Модерация
+      security:
+      - bearerAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/polls:
+    get:
+      operationId: polls_list
+      parameters:
+      - in: query
+        name: limit
+        schema:
+          type: integer
+      - in: query
+        name: offset
+        schema:
+          type: integer
+      - in: query
+        name: q
+        schema:
+          type: string
+      - in: query
+        name: sort
+        schema:
+          type: string
+      - in: query
+        name: status
+        schema:
+          type: string
+      tags:
+      - Опросы
+      security:
+      - bearerAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PollPage'
+          description: ''
+    post:
+      operationId: polls_create
+      tags:
+      - Опросы
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PollInputRequest'
+        required: true
+      security:
+      - bearerAuth: []
+      - {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PollDetail'
+          description: ''
+  /api/polls/{slug}:
+    get:
+      operationId: polls_retrieve
+      parameters:
+      - in: path
+        name: slug
+        schema:
+          type: string
+        required: true
+      tags:
+      - Опросы
+      security:
+      - bearerAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PollDetail'
+          description: ''
+    patch:
+      operationId: polls_partial_update
+      parameters:
+      - in: path
+        name: slug
+        schema:
+          type: string
+        required: true
+      tags:
+      - Опросы
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedPollInputRequest'
+      security:
+      - bearerAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PollDetail'
+          description: ''
+    delete:
+      operationId: polls_destroy
+      parameters:
+      - in: path
+        name: slug
+        schema:
+          type: string
+        required: true
+      tags:
+      - Опросы
+      security:
+      - bearerAuth: []
+      - {}
+      responses:
+        '204':
+          description: No response body
+  /api/polls/{slug}/close:
+    post:
+      operationId: polls_close_create
+      parameters:
+      - in: path
+        name: slug
+        schema:
+          type: string
+        required: true
+      tags:
+      - Опросы
+      security:
+      - bearerAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PollDetail'
+          description: ''
+  /api/polls/{slug}/comments:
+    get:
+      operationId: polls_comments_retrieve
+      parameters:
+      - in: query
+        name: limit
+        schema:
+          type: integer
+      - in: query
+        name: offset
+        schema:
+          type: integer
+      - in: path
+        name: slug
+        schema:
+          type: string
+        required: true
+      tags:
+      - Комментарии
+      security:
+      - bearerAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CommentPage'
+          description: ''
+    post:
+      operationId: polls_comments_create
+      parameters:
+      - in: path
+        name: slug
+        schema:
+          type: string
+        required: true
+      tags:
+      - Комментарии
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CommentInputRequest'
+        required: true
+      security:
+      - bearerAuth: []
+      - {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Comment'
+          description: ''
+  /api/polls/{slug}/export:
+    get:
+      operationId: polls_export_retrieve
+      parameters:
+      - in: query
+        name: format
+        schema:
+          type: string
+          enum:
+          - csv
+          - pdf
+          - xlsx
+      - in: path
+        name: slug
+        schema:
+          type: string
+        required: true
+      tags:
+      - Голосование
+      security:
+      - bearerAuth: []
+      responses:
+        '200':
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+          description: ''
+  /api/polls/{slug}/publish:
+    post:
+      operationId: polls_publish_create
+      parameters:
+      - in: path
+        name: slug
+        schema:
+          type: string
+        required: true
+      tags:
+      - Опросы
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PublishRequest'
+      security:
+      - bearerAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PollDetail'
+          description: ''
+  /api/polls/{slug}/results:
+    get:
+      operationId: polls_results_retrieve
+      parameters:
+      - in: path
+        name: slug
+        schema:
+          type: string
+        required: true
+      tags:
+      - Голосование
+      security:
+      - bearerAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Results'
+          description: ''
+  /api/polls/{slug}/vote:
+    post:
+      operationId: polls_vote_create
+      parameters:
+      - in: path
+        name: slug
+        schema:
+          type: string
+        required: true
+      tags:
+      - Голосование
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VoteRequest'
+        required: true
+      security:
+      - bearerAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Results'
+          description: ''
+  /api/polls/{slug}/voters:
+    get:
+      operationId: polls_voters_retrieve
+      parameters:
+      - in: query
+        name: limit
+        schema:
+          type: integer
+      - in: query
+        name: offset
+        schema:
+          type: integer
+      - in: path
+        name: slug
+        schema:
+          type: string
+        required: true
+      tags:
+      - Голосование
+      security:
+      - bearerAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VoterPage'
+          description: ''
+  /api/reports:
+    post:
+      operationId: reports_create
+      tags:
+      - Жалобы
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReportInputRequest'
+        required: true
+      security:
+      - bearerAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Report'
+          description: ''
+  /api/users/{id}:
+    get:
+      operationId: users_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - Пользователи
+      security:
+      - bearerAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PublicUser'
+          description: ''
+  /api/users/{id}/polls:
+    get:
+      operationId: users_polls_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      - in: query
+        name: limit
+        schema:
+          type: integer
+      - in: query
+        name: offset
+        schema:
+          type: integer
+      - in: query
+        name: q
+        schema:
+          type: string
+      - in: query
+        name: sort
+        schema:
+          type: string
+      - in: query
+        name: status
+        schema:
+          type: string
+      tags:
+      - Пользователи
+      security:
+      - bearerAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PollPage'
+          description: ''
+  /api/users/me:
+    get:
+      operationId: users_me_retrieve
+      tags:
+      - Профиль
+      security:
+      - bearerAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Profile'
+          description: ''
+    patch:
+      operationId: users_me_partial_update
+      tags:
+      - Профиль
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedNicknameRequest'
+      security:
+      - bearerAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Profile'
+          description: ''
+  /api/users/me/avatar:
+    post:
+      operationId: users_me_avatar_create
+      tags:
+      - Профиль
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/AvatarRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/AvatarRequest'
+        required: true
+      security:
+      - bearerAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Profile'
+          description: ''
+    delete:
+      operationId: users_me_avatar_destroy
+      tags:
+      - Профиль
+      security:
+      - bearerAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/users/me/password:
+    post:
+      operationId: users_me_password_create
+      tags:
+      - Профиль
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PasswordRequest'
+        required: true
+      security:
+      - bearerAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tokens'
+          description: ''
+  /api/users/me/polls:
+    get:
+      operationId: users_me_polls_retrieve
+      parameters:
+      - in: query
+        name: limit
+        schema:
+          type: integer
+      - in: query
+        name: offset
+        schema:
+          type: integer
+      - in: query
+        name: q
+        schema:
+          type: string
+      - in: query
+        name: sort
+        schema:
+          type: string
+      - in: query
+        name: status
+        schema:
+          type: string
+      tags:
+      - Профиль
+      security:
+      - bearerAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PollPage'
+          description: ''
+  /api/users/me/responses:
+    get:
+      operationId: users_me_responses_retrieve
+      parameters:
+      - in: query
+        name: limit
+        schema:
+          type: integer
+      - in: query
+        name: offset
+        schema:
+          type: integer
+      tags:
+      - Профиль
+      security:
+      - bearerAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PollPage'
+          description: ''
+  /api/users/me/warnings:
+    get:
+      operationId: users_me_warnings_retrieve
+      parameters:
+      - in: query
+        name: limit
+        schema:
+          type: integer
+      - in: query
+        name: offset
+        schema:
+          type: integer
+      tags:
+      - Профиль
+      security:
+      - bearerAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WarningPage'
+          description: ''
+components:
+  schemas:
+    AccessModeEnum:
+      enum:
+      - anonymous
+      - registered
+      type: string
+      description: |-
+        * `anonymous` - anonymous
+        * `registered` - registered
+    AuthResult:
+      type: object
+      properties:
+        access:
+          type: string
+        refresh:
+          type: string
+        profile:
+          $ref: '#/components/schemas/Profile'
+      required:
+      - access
+      - profile
+      - refresh
+    AvatarRequest:
+      type: object
+      properties:
+        avatar:
+          type: string
+          format: binary
+      required:
+      - avatar
+    Ban:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        user_id:
+          type: integer
+          readOnly: true
+        banned_by:
+          type: integer
+          nullable: true
+        is_auto:
+          type: boolean
+        reason:
+          type: string
+          nullable: true
+          maxLength: 500
+        banned_at:
+          type: string
+          format: date-time
+          readOnly: true
+        unbanned_at:
+          type: string
+          format: date-time
+          nullable: true
+      required:
+      - banned_at
+      - id
+      - user_id
+    BanInputRequest:
+      type: object
+      properties:
+        reason:
+          type: string
+          nullable: true
+          maxLength: 500
+    BanPage:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Ban'
+        total:
+          type: integer
+        has_more:
+          type: boolean
+      required:
+      - has_more
+      - items
+      - total
+    Comment:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        poll_id:
+          type: integer
+          readOnly: true
+        author:
+          $ref: '#/components/schemas/PublicUser'
+        parent_id:
+          type: integer
+          nullable: true
+          readOnly: true
+        text:
+          type: string
+          maxLength: 1000
+        likes_count:
+          type: integer
+          maximum: 2147483647
+          minimum: -2147483648
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+      required:
+      - author
+      - created_at
+      - id
+      - parent_id
+      - poll_id
+      - text
+      - updated_at
+    CommentInputRequest:
+      type: object
+      properties:
+        text:
+          type: string
+          minLength: 1
+          maxLength: 1000
+        parent_id:
+          type: integer
+          minimum: 1
+          nullable: true
+      required:
+      - text
+    CommentPage:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Comment'
+        total:
+          type: integer
+        has_more:
+          type: boolean
+      required:
+      - has_more
+      - items
+      - total
+    LikeResult:
+      type: object
+      properties:
+        liked:
+          type: boolean
+        likes_count:
+          type: integer
+      required:
+      - liked
+      - likes_count
+    LoginRequest:
+      type: object
+      properties:
+        email:
+          type: string
+          format: email
+          minLength: 1
+        password:
+          type: string
+          minLength: 1
+      required:
+      - email
+      - password
+    ModerationDeleteRequest:
+      type: object
+      properties:
+        is_violation:
+          type: boolean
+          default: false
+        comment:
+          type: string
+          minLength: 1
+          maxLength: 500
+    MyAnswer:
+      type: object
+      properties:
+        question_id:
+          type: integer
+        option_ids:
+          type: array
+          items:
+            type: integer
+      required:
+      - option_ids
+      - question_id
+    Option:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        text:
+          type: string
+          maxLength: 200
+        position:
+          type: integer
+          maximum: 32767
+          minimum: -32768
+      required:
+      - id
+      - position
+      - text
+    OptionInputRequest:
+      type: object
+      properties:
+        text:
+          type: string
+          minLength: 1
+          maxLength: 200
+      required:
+      - text
+    OptionResult:
+      type: object
+      properties:
+        id:
+          type: integer
+        text:
+          type: string
+        votes:
+          type: integer
+        percent:
+          type: number
+          format: double
+      required:
+      - id
+      - percent
+      - text
+      - votes
+    PasswordRequest:
+      type: object
+      properties:
+        old_password:
+          type: string
+          minLength: 1
+        new_password:
+          type: string
+          minLength: 1
+          maxLength: 128
+        new_password_confirm:
+          type: string
+          minLength: 1
+          maxLength: 128
+      required:
+      - new_password
+      - new_password_confirm
+      - old_password
+    PatchedCommentEditRequest:
+      type: object
+      properties:
+        text:
+          type: string
+          minLength: 1
+          maxLength: 1000
+    PatchedNicknameRequest:
+      type: object
+      properties:
+        nickname:
+          type: string
+          minLength: 1
+          maxLength: 32
+    PatchedPollInputRequest:
+      type: object
+      properties:
+        title:
+          type: string
+          minLength: 1
+          maxLength: 200
+        description:
+          type: string
+          nullable: true
+          maxLength: 1000
+        access_mode:
+          allOf:
+          - $ref: '#/components/schemas/AccessModeEnum'
+          default: anonymous
+        visibility:
+          allOf:
+          - $ref: '#/components/schemas/VisibilityEnum'
+          default: public
+        allow_revote:
+          type: boolean
+          default: false
+        comments_enabled:
+          type: boolean
+          default: true
+        ends_at:
+          type: string
+          format: date-time
+          nullable: true
+        max_votes:
+          type: integer
+          minimum: 1
+          nullable: true
+        questions:
+          type: array
+          items:
+            $ref: '#/components/schemas/QuestionInputRequest'
+    PatchedReviewRequest:
+      type: object
+      properties:
+        status:
+          $ref: '#/components/schemas/ReviewStatusEnum'
+    PatchedRoleInputRequest:
+      type: object
+      properties:
+        role:
+          $ref: '#/components/schemas/RoleEnum'
+    PollDetail:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        slug:
+          type: string
+          maxLength: 8
+        title:
+          type: string
+          maxLength: 200
+        description:
+          type: string
+          nullable: true
+          maxLength: 1000
+        status:
+          $ref: '#/components/schemas/PollStatusEnum'
+        access_mode:
+          $ref: '#/components/schemas/AccessModeEnum'
+        visibility:
+          $ref: '#/components/schemas/VisibilityEnum'
+        author:
+          $ref: '#/components/schemas/PublicUser'
+        responses_count:
+          type: integer
+          maximum: 2147483647
+          minimum: -2147483648
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        ends_at:
+          type: string
+          format: date-time
+          nullable: true
+        allow_revote:
+          type: boolean
+        comments_enabled:
+          type: boolean
+        starts_at:
+          type: string
+          format: date-time
+          nullable: true
+        max_votes:
+          type: integer
+          maximum: 2147483647
+          minimum: -2147483648
+          nullable: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+        published_at:
+          type: string
+          format: date-time
+          nullable: true
+        finished_at:
+          type: string
+          format: date-time
+          nullable: true
+        questions:
+          type: array
+          items:
+            $ref: '#/components/schemas/Question'
+        can_vote:
+          type: boolean
+          readOnly: true
+        has_voted:
+          type: boolean
+          readOnly: true
+        my_answers:
+          type: array
+          items:
+            type: object
+            additionalProperties: {}
+          readOnly: true
+        results_available:
+          type: boolean
+          readOnly: true
+      required:
+      - author
+      - can_vote
+      - created_at
+      - has_voted
+      - id
+      - my_answers
+      - questions
+      - results_available
+      - title
+      - updated_at
+    PollInputRequest:
+      type: object
+      properties:
+        title:
+          type: string
+          minLength: 1
+          maxLength: 200
+        description:
+          type: string
+          nullable: true
+          maxLength: 1000
+        access_mode:
+          allOf:
+          - $ref: '#/components/schemas/AccessModeEnum'
+          default: anonymous
+        visibility:
+          allOf:
+          - $ref: '#/components/schemas/VisibilityEnum'
+          default: public
+        allow_revote:
+          type: boolean
+          default: false
+        comments_enabled:
+          type: boolean
+          default: true
+        ends_at:
+          type: string
+          format: date-time
+          nullable: true
+        max_votes:
+          type: integer
+          minimum: 1
+          nullable: true
+        questions:
+          type: array
+          items:
+            $ref: '#/components/schemas/QuestionInputRequest'
+      required:
+      - questions
+      - title
+    PollPage:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/PollSummary'
+        total:
+          type: integer
+        has_more:
+          type: boolean
+      required:
+      - has_more
+      - items
+      - total
+    PollStatusEnum:
+      enum:
+      - draft
+      - active
+      - finished
+      type: string
+      description: |-
+        * `draft` - draft
+        * `active` - active
+        * `finished` - finished
+    PollSummary:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        slug:
+          type: string
+          maxLength: 8
+        title:
+          type: string
+          maxLength: 200
+        description:
+          type: string
+          nullable: true
+          maxLength: 1000
+        status:
+          $ref: '#/components/schemas/PollStatusEnum'
+        access_mode:
+          $ref: '#/components/schemas/AccessModeEnum'
+        visibility:
+          $ref: '#/components/schemas/VisibilityEnum'
+        author:
+          $ref: '#/components/schemas/PublicUser'
+        responses_count:
+          type: integer
+          maximum: 2147483647
+          minimum: -2147483648
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        ends_at:
+          type: string
+          format: date-time
+          nullable: true
+      required:
+      - author
+      - created_at
+      - id
+      - title
+    Profile:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        nickname:
+          type: string
+          maxLength: 32
+        avatar_url:
+          type: string
+          nullable: true
+          maxLength: 500
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        email:
+          type: string
+          format: email
+          maxLength: 255
+        role:
+          type: string
+        is_banned:
+          type: boolean
+        polls_count:
+          type: integer
+        warnings_count:
+          type: integer
+          readOnly: true
+      required:
+      - created_at
+      - email
+      - id
+      - nickname
+      - polls_count
+      - role
+      - warnings_count
+    PublicUser:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        nickname:
+          type: string
+          maxLength: 32
+        avatar_url:
+          type: string
+          nullable: true
+          maxLength: 500
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+      required:
+      - created_at
+      - id
+      - nickname
+    PublishRequest:
+      type: object
+      properties:
+        starts_at:
+          type: string
+          format: date-time
+          nullable: true
+    Question:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        text:
+          type: string
+          maxLength: 300
+        type:
+          $ref: '#/components/schemas/TypeEnum'
+        min_choices:
+          type: integer
+          maximum: 32767
+          minimum: -32768
+        max_choices:
+          type: integer
+          maximum: 32767
+          minimum: -32768
+        position:
+          type: integer
+          maximum: 32767
+          minimum: -32768
+        options:
+          type: array
+          items:
+            $ref: '#/components/schemas/Option'
+      required:
+      - id
+      - options
+      - position
+      - text
+      - type
+    QuestionInputRequest:
+      type: object
+      properties:
+        text:
+          type: string
+          minLength: 1
+          maxLength: 300
+        type:
+          $ref: '#/components/schemas/TypeEnum'
+        min_choices:
+          type: integer
+          minimum: 1
+          default: 1
+        max_choices:
+          type: integer
+          minimum: 1
+          default: 1
+        options:
+          type: array
+          items:
+            $ref: '#/components/schemas/OptionInputRequest'
+      required:
+      - text
+      - type
+    QuestionResult:
+      type: object
+      properties:
+        id:
+          type: integer
+        text:
+          type: string
+        type:
+          type: string
+        options:
+          type: array
+          items:
+            $ref: '#/components/schemas/OptionResult'
+      required:
+      - id
+      - options
+      - text
+      - type
+    ReasonRequest:
+      type: object
+      properties:
+        reason:
+          type: string
+          minLength: 1
+          maxLength: 500
+      required:
+      - reason
+    RefreshRequest:
+      type: object
+      properties:
+        refresh:
+          type: string
+          minLength: 1
+      required:
+      - refresh
+    RegisterRequest:
+      type: object
+      properties:
+        email:
+          type: string
+          format: email
+          minLength: 1
+          maxLength: 255
+        nickname:
+          type: string
+          minLength: 1
+          maxLength: 32
+        password:
+          type: string
+          writeOnly: true
+          minLength: 1
+          maxLength: 128
+        password_confirm:
+          type: string
+          writeOnly: true
+          minLength: 1
+          maxLength: 128
+      required:
+      - email
+      - nickname
+      - password
+      - password_confirm
+    Report:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        reporter_id:
+          type: integer
+          readOnly: true
+        poll_id:
+          type: integer
+          nullable: true
+          readOnly: true
+        comment_id:
+          type: integer
+          nullable: true
+          readOnly: true
+        reason:
+          type: string
+          maxLength: 500
+        status:
+          $ref: '#/components/schemas/ReportStatusEnum'
+        reviewed_by:
+          type: integer
+          nullable: true
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        reviewed_at:
+          type: string
+          format: date-time
+          nullable: true
+      required:
+      - comment_id
+      - created_at
+      - id
+      - poll_id
+      - reason
+      - reporter_id
+    ReportInputRequest:
+      type: object
+      properties:
+        poll_slug:
+          type: string
+          minLength: 1
+          maxLength: 8
+        comment_id:
+          type: integer
+          minimum: 1
+        reason:
+          type: string
+          minLength: 1
+          maxLength: 500
+      required:
+      - reason
+    ReportPage:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Report'
+        total:
+          type: integer
+        has_more:
+          type: boolean
+      required:
+      - has_more
+      - items
+      - total
+    ReportStatusEnum:
+      enum:
+      - new
+      - accepted
+      - rejected
+      type: string
+      description: |-
+        * `new` - new
+        * `accepted` - accepted
+        * `rejected` - rejected
+    Results:
+      type: object
+      properties:
+        total_responses:
+          type: integer
+        questions:
+          type: array
+          items:
+            $ref: '#/components/schemas/QuestionResult'
+      required:
+      - questions
+      - total_responses
+    ReviewStatusEnum:
+      enum:
+      - accepted
+      - rejected
+      type: string
+      description: |-
+        * `accepted` - accepted
+        * `rejected` - rejected
+    RoleEnum:
+      enum:
+      - user
+      - moderator
+      type: string
+      description: |-
+        * `user` - user
+        * `moderator` - moderator
+    Tokens:
+      type: object
+      properties:
+        access:
+          type: string
+        refresh:
+          type: string
+      required:
+      - access
+      - refresh
+    TypeEnum:
+      enum:
+      - single
+      - multiple
+      - scale
+      type: string
+      description: |-
+        * `single` - single
+        * `multiple` - multiple
+        * `scale` - scale
+    UserPage:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Profile'
+        total:
+          type: integer
+        has_more:
+          type: boolean
+      required:
+      - has_more
+      - items
+      - total
+    VisibilityEnum:
+      enum:
+      - public
+      - link
+      type: string
+      description: |-
+        * `public` - public
+        * `link` - link
+    VoteAnswerRequest:
+      type: object
+      properties:
+        question_id:
+          type: integer
+          minimum: 1
+        option_ids:
+          type: array
+          items:
+            type: integer
+            minimum: 1
+      required:
+      - option_ids
+      - question_id
+    VoteRequest:
+      type: object
+      properties:
+        answers:
+          type: array
+          items:
+            $ref: '#/components/schemas/VoteAnswerRequest'
+      required:
+      - answers
+    Voter:
+      type: object
+      properties:
+        user:
+          $ref: '#/components/schemas/PublicUser'
+        answers:
+          type: array
+          items:
+            $ref: '#/components/schemas/MyAnswer'
+      required:
+      - answers
+      - user
+    VoterPage:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Voter'
+        total:
+          type: integer
+        has_more:
+          type: boolean
+      required:
+      - has_more
+      - items
+      - total
+    Warning:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        user_id:
+          type: integer
+          readOnly: true
+        moderator_id:
+          type: integer
+          nullable: true
+          readOnly: true
+        reason:
+          type: string
+          maxLength: 500
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+      required:
+      - created_at
+      - id
+      - moderator_id
+      - reason
+      - user_id
+    WarningPage:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Warning'
+        total:
+          type: integer
+        has_more:
+          type: boolean
+      required:
+      - has_more
+      - items
+      - total
+    WarningResult:
+      type: object
+      properties:
+        warnings_count:
+          type: integer
+        auto_banned:
+          type: boolean
+      required:
+      - auto_banned
+      - warnings_count
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
