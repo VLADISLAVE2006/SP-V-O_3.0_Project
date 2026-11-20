@@ -1,7 +1,6 @@
 import io
 import uuid
 
-from django.core.exceptions import ValidationError as DjangoValidationError
 from django.core.files.base import ContentFile
 from django.core.files.storage import default_storage
 from django.db import IntegrityError, connection, transaction
@@ -13,7 +12,8 @@ from PIL import Image
 from rest_framework import serializers
 from rest_framework.exceptions import AuthenticationFailed, PermissionDenied, ValidationError
 from rest_framework.parsers import FormParser, MultiPartParser
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.negotiation import DefaultContentNegotiation
+from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.throttling import ScopedRateThrottle
 from rest_framework.views import APIView
@@ -50,10 +50,7 @@ POLL_FILTERS = PAGING + [
 
 def validated(cls, request, *, partial=False, **context):
     serializer = cls(data=request.data, partial=partial, context={"request": request, **context})
-    try:
-        serializer.is_valid(raise_exception=True)
-    except DjangoValidationError as exc:
-        raise ValidationError({"password": exc.messages})
+    serializer.is_valid(raise_exception=True)
     return serializer.validated_data
 
 
@@ -289,6 +286,9 @@ class PublicUserPollsView(APIView):
 
 
 class PollsView(APIView):
+    def get_permissions(self):
+        return [AllowAny()] if self.request.method == "GET" else [IsAuthenticated()]
+
     @extend_schema(
         operation_id="polls_list", parameters=POLL_FILTERS, responses=S.PollPageSerializer, tags=["Опросы"]
     )
@@ -305,6 +305,9 @@ class PollsView(APIView):
 
 
 class PollView(APIView):
+    def get_permissions(self):
+        return [AllowAny()] if self.request.method == "GET" else [IsAuthenticated()]
+
     @extend_schema(responses=S.PollDetailSerializer, tags=["Опросы"])
     def get(self, request, slug):
         poll = current_poll(slug)
@@ -407,10 +410,22 @@ class VotersView(AuthenticatedView):
         return page(request, poll.responses.select_related("user").order_by("created_at", "pk"), VoterAdapter)
 
 
+class FileDownloadNegotiation(DefaultContentNegotiation):
+    def select_renderer(self, request, renderers, format_suffix=None):
+        # HttpResponse supplies the file MIME type; API errors still use JSON.
+        return renderers[0], renderers[0].media_type
+
+
 class ExportView(AuthenticatedView):
+    content_negotiation_class = FileDownloadNegotiation
+
     @extend_schema(
         parameters=[OpenApiParameter("format", str, enum=["csv", "xlsx", "pdf"])],
-        responses={(200, "application/octet-stream"): OpenApiTypes.BINARY},
+        responses={
+            (200, "text/csv"): OpenApiTypes.BINARY,
+            (200, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"): OpenApiTypes.BINARY,
+            (200, "application/pdf"): OpenApiTypes.BINARY,
+        },
         tags=["Голосование"],
     )
     def get(self, request, slug):
@@ -422,6 +437,9 @@ class ExportView(AuthenticatedView):
 
 
 class CommentsView(APIView):
+    def get_permissions(self):
+        return [AllowAny()] if self.request.method == "GET" else [IsAuthenticated()]
+
     @extend_schema(parameters=PAGING, responses=S.CommentPageSerializer, tags=["Комментарии"])
     def get(self, request, slug):
         poll = current_poll(slug)

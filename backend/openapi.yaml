@@ -41,6 +41,51 @@ paths:
               schema:
                 $ref: '#/components/schemas/UserPage'
           description: ''
+        '400':
+          description: Ошибка входных данных. См. поля формы или detail.
+          content:
+            application/json:
+              schema:
+                anyOf:
+                - $ref: '#/components/schemas/ApiError'
+                - $ref: '#/components/schemas/ValidationErrors'
+        '401':
+          description: Нужен действующий access-токен; для refresh — действующий refresh-токен.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '403':
+          description: Недостаточно прав или действие запрещено состоянием опроса.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '404':
+          description: Объект не найден.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '409':
+          description: Конфликт, например занятый никнейм или запрещённое перепрохождение.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '415':
+          description: Неверный Content-Type. JSON для API, multipart/form-data для
+            аватара.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '429':
+          description: Слишком много запросов. Повторите после Retry-After секунд.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
   /api/admin/users/{id}/ban:
     post:
       operationId: admin_users_ban_create
@@ -66,6 +111,51 @@ paths:
               schema:
                 $ref: '#/components/schemas/Profile'
           description: ''
+        '400':
+          description: Ошибка входных данных. См. поля формы или detail.
+          content:
+            application/json:
+              schema:
+                anyOf:
+                - $ref: '#/components/schemas/ApiError'
+                - $ref: '#/components/schemas/ValidationErrors'
+        '401':
+          description: Нужен действующий access-токен; для refresh — действующий refresh-токен.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '403':
+          description: Недостаточно прав или действие запрещено состоянием опроса.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '404':
+          description: Объект не найден.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '409':
+          description: Конфликт, например занятый никнейм или запрещённое перепрохождение.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '415':
+          description: Неверный Content-Type. JSON для API, multipart/form-data для
+            аватара.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '429':
+          description: Слишком много запросов. Повторите после Retry-After секунд.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
   /api/admin/users/{id}/bans:
     get:
       operationId: admin_users_bans_retrieve
@@ -94,6 +184,51 @@ paths:
               schema:
                 $ref: '#/components/schemas/BanPage'
           description: ''
+        '400':
+          description: Ошибка входных данных. См. поля формы или detail.
+          content:
+            application/json:
+              schema:
+                anyOf:
+                - $ref: '#/components/schemas/ApiError'
+                - $ref: '#/components/schemas/ValidationErrors'
+        '401':
+          description: Нужен действующий access-токен; для refresh — действующий refresh-токен.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '403':
+          description: Недостаточно прав или действие запрещено состоянием опроса.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '404':
+          description: Объект не найден.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '409':
+          description: Конфликт, например занятый никнейм или запрещённое перепрохождение.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '415':
+          description: Неверный Content-Type. JSON для API, multipart/form-data для
+            аватара.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '429':
+          description: Слишком много запросов. Повторите после Retry-After секунд.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
   /api/admin/users/{id}/role:
     patch:
       operationId: admin_users_role_partial_update
@@ -119,6 +254,51 @@ paths:
               schema:
                 $ref: '#/components/schemas/Profile'
           description: ''
+        '400':
+          description: Ошибка входных данных. См. поля формы или detail.
+          content:
+            application/json:
+              schema:
+                anyOf:
+                - $ref: '#/components/schemas/ApiError'
+                - $ref: '#/components/schemas/ValidationErrors'
+        '401':
+          description: Нужен действующий access-токен; для refresh — действующий refresh-токен.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '403':
+          description: Недостаточно прав или действие запрещено состоянием опроса.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '404':
+          description: Объект не найден.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '409':
+          description: Конфликт, например занятый никнейм или запрещённое перепрохождение.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '415':
+          description: Неверный Content-Type. JSON для API, multipart/form-data для
+            аватара.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '429':
+          description: Слишком много запросов. Повторите после Retry-After секунд.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
   /api/admin/users/{id}/unban:
     post:
       operationId: admin_users_unban_create
@@ -139,6 +319,51 @@ paths:
               schema:
                 $ref: '#/components/schemas/Profile'
           description: ''
+        '400':
+          description: Ошибка входных данных. См. поля формы или detail.
+          content:
+            application/json:
+              schema:
+                anyOf:
+                - $ref: '#/components/schemas/ApiError'
+                - $ref: '#/components/schemas/ValidationErrors'
+        '401':
+          description: Нужен действующий access-токен; для refresh — действующий refresh-токен.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '403':
+          description: Недостаточно прав или действие запрещено состоянием опроса.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '404':
+          description: Объект не найден.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '409':
+          description: Конфликт, например занятый никнейм или запрещённое перепрохождение.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '415':
+          description: Неверный Content-Type. JSON для API, multipart/form-data для
+            аватара.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '429':
+          description: Слишком много запросов. Повторите после Retry-After секунд.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
   /api/auth/login:
     post:
       operationId: auth_login_create
@@ -157,6 +382,51 @@ paths:
               schema:
                 $ref: '#/components/schemas/AuthResult'
           description: ''
+        '400':
+          description: Ошибка входных данных. См. поля формы или detail.
+          content:
+            application/json:
+              schema:
+                anyOf:
+                - $ref: '#/components/schemas/ApiError'
+                - $ref: '#/components/schemas/ValidationErrors'
+        '401':
+          description: Нужен действующий access-токен; для refresh — действующий refresh-токен.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '403':
+          description: Недостаточно прав или действие запрещено состоянием опроса.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '404':
+          description: Объект не найден.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '409':
+          description: Конфликт, например занятый никнейм или запрещённое перепрохождение.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '415':
+          description: Неверный Content-Type. JSON для API, multipart/form-data для
+            аватара.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '429':
+          description: Слишком много запросов. Повторите после Retry-After секунд.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
   /api/auth/logout:
     post:
       operationId: auth_logout_create
@@ -173,6 +443,51 @@ paths:
       responses:
         '204':
           description: No response body
+        '400':
+          description: Ошибка входных данных. См. поля формы или detail.
+          content:
+            application/json:
+              schema:
+                anyOf:
+                - $ref: '#/components/schemas/ApiError'
+                - $ref: '#/components/schemas/ValidationErrors'
+        '401':
+          description: Нужен действующий access-токен; для refresh — действующий refresh-токен.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '403':
+          description: Недостаточно прав или действие запрещено состоянием опроса.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '404':
+          description: Объект не найден.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '409':
+          description: Конфликт, например занятый никнейм или запрещённое перепрохождение.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '415':
+          description: Неверный Content-Type. JSON для API, multipart/form-data для
+            аватара.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '429':
+          description: Слишком много запросов. Повторите после Retry-After секунд.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
   /api/auth/refresh:
     post:
       operationId: auth_refresh_create
@@ -191,6 +506,51 @@ paths:
               schema:
                 $ref: '#/components/schemas/Tokens'
           description: ''
+        '400':
+          description: Ошибка входных данных. См. поля формы или detail.
+          content:
+            application/json:
+              schema:
+                anyOf:
+                - $ref: '#/components/schemas/ApiError'
+                - $ref: '#/components/schemas/ValidationErrors'
+        '401':
+          description: Нужен действующий access-токен; для refresh — действующий refresh-токен.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '403':
+          description: Недостаточно прав или действие запрещено состоянием опроса.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '404':
+          description: Объект не найден.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '409':
+          description: Конфликт, например занятый никнейм или запрещённое перепрохождение.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '415':
+          description: Неверный Content-Type. JSON для API, multipart/form-data для
+            аватара.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '429':
+          description: Слишком много запросов. Повторите после Retry-After секунд.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
   /api/auth/register:
     post:
       operationId: auth_register_create
@@ -209,6 +569,51 @@ paths:
               schema:
                 $ref: '#/components/schemas/AuthResult'
           description: ''
+        '400':
+          description: Ошибка входных данных. См. поля формы или detail.
+          content:
+            application/json:
+              schema:
+                anyOf:
+                - $ref: '#/components/schemas/ApiError'
+                - $ref: '#/components/schemas/ValidationErrors'
+        '401':
+          description: Нужен действующий access-токен; для refresh — действующий refresh-токен.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '403':
+          description: Недостаточно прав или действие запрещено состоянием опроса.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '404':
+          description: Объект не найден.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '409':
+          description: Конфликт, например занятый никнейм или запрещённое перепрохождение.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '415':
+          description: Неверный Content-Type. JSON для API, multipart/form-data для
+            аватара.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '429':
+          description: Слишком много запросов. Повторите после Retry-After секунд.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
   /api/comments/{id}:
     patch:
       operationId: comments_partial_update
@@ -234,6 +639,51 @@ paths:
               schema:
                 $ref: '#/components/schemas/Comment'
           description: ''
+        '400':
+          description: Ошибка входных данных. См. поля формы или detail.
+          content:
+            application/json:
+              schema:
+                anyOf:
+                - $ref: '#/components/schemas/ApiError'
+                - $ref: '#/components/schemas/ValidationErrors'
+        '401':
+          description: Нужен действующий access-токен; для refresh — действующий refresh-токен.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '403':
+          description: Недостаточно прав или действие запрещено состоянием опроса.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '404':
+          description: Объект не найден.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '409':
+          description: Конфликт, например занятый никнейм или запрещённое перепрохождение.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '415':
+          description: Неверный Content-Type. JSON для API, multipart/form-data для
+            аватара.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '429':
+          description: Слишком много запросов. Повторите после Retry-After секунд.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
     delete:
       operationId: comments_destroy
       parameters:
@@ -249,6 +699,51 @@ paths:
       responses:
         '204':
           description: No response body
+        '400':
+          description: Ошибка входных данных. См. поля формы или detail.
+          content:
+            application/json:
+              schema:
+                anyOf:
+                - $ref: '#/components/schemas/ApiError'
+                - $ref: '#/components/schemas/ValidationErrors'
+        '401':
+          description: Нужен действующий access-токен; для refresh — действующий refresh-токен.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '403':
+          description: Недостаточно прав или действие запрещено состоянием опроса.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '404':
+          description: Объект не найден.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '409':
+          description: Конфликт, например занятый никнейм или запрещённое перепрохождение.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '415':
+          description: Неверный Content-Type. JSON для API, multipart/form-data для
+            аватара.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '429':
+          description: Слишком много запросов. Повторите после Retry-After секунд.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
   /api/comments/{id}/like:
     post:
       operationId: comments_like_create
@@ -269,6 +764,51 @@ paths:
               schema:
                 $ref: '#/components/schemas/LikeResult'
           description: ''
+        '400':
+          description: Ошибка входных данных. См. поля формы или detail.
+          content:
+            application/json:
+              schema:
+                anyOf:
+                - $ref: '#/components/schemas/ApiError'
+                - $ref: '#/components/schemas/ValidationErrors'
+        '401':
+          description: Нужен действующий access-токен; для refresh — действующий refresh-токен.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '403':
+          description: Недостаточно прав или действие запрещено состоянием опроса.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '404':
+          description: Объект не найден.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '409':
+          description: Конфликт, например занятый никнейм или запрещённое перепрохождение.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '415':
+          description: Неверный Content-Type. JSON для API, multipart/form-data для
+            аватара.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '429':
+          description: Слишком много запросов. Повторите после Retry-After секунд.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
     delete:
       operationId: comments_like_destroy
       parameters:
@@ -284,6 +824,51 @@ paths:
       responses:
         '204':
           description: No response body
+        '400':
+          description: Ошибка входных данных. См. поля формы или detail.
+          content:
+            application/json:
+              schema:
+                anyOf:
+                - $ref: '#/components/schemas/ApiError'
+                - $ref: '#/components/schemas/ValidationErrors'
+        '401':
+          description: Нужен действующий access-токен; для refresh — действующий refresh-токен.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '403':
+          description: Недостаточно прав или действие запрещено состоянием опроса.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '404':
+          description: Объект не найден.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '409':
+          description: Конфликт, например занятый никнейм или запрещённое перепрохождение.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '415':
+          description: Неверный Content-Type. JSON для API, multipart/form-data для
+            аватара.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '429':
+          description: Слишком много запросов. Повторите после Retry-After секунд.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
   /api/health:
     get:
       operationId: health_retrieve
@@ -321,6 +906,51 @@ paths:
       responses:
         '204':
           description: No response body
+        '400':
+          description: Ошибка входных данных. См. поля формы или detail.
+          content:
+            application/json:
+              schema:
+                anyOf:
+                - $ref: '#/components/schemas/ApiError'
+                - $ref: '#/components/schemas/ValidationErrors'
+        '401':
+          description: Нужен действующий access-токен; для refresh — действующий refresh-токен.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '403':
+          description: Недостаточно прав или действие запрещено состоянием опроса.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '404':
+          description: Объект не найден.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '409':
+          description: Конфликт, например занятый никнейм или запрещённое перепрохождение.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '415':
+          description: Неверный Content-Type. JSON для API, multipart/form-data для
+            аватара.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '429':
+          description: Слишком много запросов. Повторите после Retry-After секунд.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
   /api/moderation/polls/{slug}/delete:
     post:
       operationId: moderation_polls_delete_create
@@ -342,6 +972,51 @@ paths:
       responses:
         '204':
           description: No response body
+        '400':
+          description: Ошибка входных данных. См. поля формы или detail.
+          content:
+            application/json:
+              schema:
+                anyOf:
+                - $ref: '#/components/schemas/ApiError'
+                - $ref: '#/components/schemas/ValidationErrors'
+        '401':
+          description: Нужен действующий access-токен; для refresh — действующий refresh-токен.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '403':
+          description: Недостаточно прав или действие запрещено состоянием опроса.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '404':
+          description: Объект не найден.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '409':
+          description: Конфликт, например занятый никнейм или запрещённое перепрохождение.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '415':
+          description: Неверный Content-Type. JSON для API, multipart/form-data для
+            аватара.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '429':
+          description: Слишком много запросов. Повторите после Retry-After секунд.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
   /api/moderation/reports:
     get:
       operationId: moderation_reports_retrieve
@@ -373,6 +1048,51 @@ paths:
               schema:
                 $ref: '#/components/schemas/ReportPage'
           description: ''
+        '400':
+          description: Ошибка входных данных. См. поля формы или detail.
+          content:
+            application/json:
+              schema:
+                anyOf:
+                - $ref: '#/components/schemas/ApiError'
+                - $ref: '#/components/schemas/ValidationErrors'
+        '401':
+          description: Нужен действующий access-токен; для refresh — действующий refresh-токен.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '403':
+          description: Недостаточно прав или действие запрещено состоянием опроса.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '404':
+          description: Объект не найден.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '409':
+          description: Конфликт, например занятый никнейм или запрещённое перепрохождение.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '415':
+          description: Неверный Content-Type. JSON для API, multipart/form-data для
+            аватара.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '429':
+          description: Слишком много запросов. Повторите после Retry-After секунд.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
   /api/moderation/reports/{id}:
     patch:
       operationId: moderation_reports_partial_update
@@ -398,6 +1118,51 @@ paths:
               schema:
                 $ref: '#/components/schemas/Report'
           description: ''
+        '400':
+          description: Ошибка входных данных. См. поля формы или detail.
+          content:
+            application/json:
+              schema:
+                anyOf:
+                - $ref: '#/components/schemas/ApiError'
+                - $ref: '#/components/schemas/ValidationErrors'
+        '401':
+          description: Нужен действующий access-токен; для refresh — действующий refresh-токен.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '403':
+          description: Недостаточно прав или действие запрещено состоянием опроса.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '404':
+          description: Объект не найден.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '409':
+          description: Конфликт, например занятый никнейм или запрещённое перепрохождение.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '415':
+          description: Неверный Content-Type. JSON для API, multipart/form-data для
+            аватара.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '429':
+          description: Слишком много запросов. Повторите после Retry-After секунд.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
   /api/moderation/users/{id}/warnings:
     get:
       operationId: moderation_users_warnings_retrieve
@@ -426,6 +1191,51 @@ paths:
               schema:
                 $ref: '#/components/schemas/WarningPage'
           description: ''
+        '400':
+          description: Ошибка входных данных. См. поля формы или detail.
+          content:
+            application/json:
+              schema:
+                anyOf:
+                - $ref: '#/components/schemas/ApiError'
+                - $ref: '#/components/schemas/ValidationErrors'
+        '401':
+          description: Нужен действующий access-токен; для refresh — действующий refresh-токен.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '403':
+          description: Недостаточно прав или действие запрещено состоянием опроса.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '404':
+          description: Объект не найден.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '409':
+          description: Конфликт, например занятый никнейм или запрещённое перепрохождение.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '415':
+          description: Неверный Content-Type. JSON для API, multipart/form-data для
+            аватара.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '429':
+          description: Слишком много запросов. Повторите после Retry-After секунд.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
     post:
       operationId: moderation_users_warnings_create
       parameters:
@@ -451,6 +1261,51 @@ paths:
               schema:
                 $ref: '#/components/schemas/WarningResult'
           description: ''
+        '400':
+          description: Ошибка входных данных. См. поля формы или detail.
+          content:
+            application/json:
+              schema:
+                anyOf:
+                - $ref: '#/components/schemas/ApiError'
+                - $ref: '#/components/schemas/ValidationErrors'
+        '401':
+          description: Нужен действующий access-токен; для refresh — действующий refresh-токен.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '403':
+          description: Недостаточно прав или действие запрещено состоянием опроса.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '404':
+          description: Объект не найден.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '409':
+          description: Конфликт, например занятый никнейм или запрещённое перепрохождение.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '415':
+          description: Неверный Content-Type. JSON для API, multipart/form-data для
+            аватара.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '429':
+          description: Слишком много запросов. Повторите после Retry-After секунд.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
   /api/moderation/warnings/{id}:
     delete:
       operationId: moderation_warnings_destroy
@@ -467,6 +1322,51 @@ paths:
       responses:
         '204':
           description: No response body
+        '400':
+          description: Ошибка входных данных. См. поля формы или detail.
+          content:
+            application/json:
+              schema:
+                anyOf:
+                - $ref: '#/components/schemas/ApiError'
+                - $ref: '#/components/schemas/ValidationErrors'
+        '401':
+          description: Нужен действующий access-токен; для refresh — действующий refresh-токен.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '403':
+          description: Недостаточно прав или действие запрещено состоянием опроса.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '404':
+          description: Объект не найден.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '409':
+          description: Конфликт, например занятый никнейм или запрещённое перепрохождение.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '415':
+          description: Неверный Content-Type. JSON для API, multipart/form-data для
+            аватара.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '429':
+          description: Слишком много запросов. Повторите после Retry-After секунд.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
   /api/polls:
     get:
       operationId: polls_list
@@ -503,6 +1403,51 @@ paths:
               schema:
                 $ref: '#/components/schemas/PollPage'
           description: ''
+        '400':
+          description: Ошибка входных данных. См. поля формы или detail.
+          content:
+            application/json:
+              schema:
+                anyOf:
+                - $ref: '#/components/schemas/ApiError'
+                - $ref: '#/components/schemas/ValidationErrors'
+        '401':
+          description: Нужен действующий access-токен; для refresh — действующий refresh-токен.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '403':
+          description: Недостаточно прав или действие запрещено состоянием опроса.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '404':
+          description: Объект не найден.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '409':
+          description: Конфликт, например занятый никнейм или запрещённое перепрохождение.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '415':
+          description: Неверный Content-Type. JSON для API, multipart/form-data для
+            аватара.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '429':
+          description: Слишком много запросов. Повторите после Retry-After секунд.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
     post:
       operationId: polls_create
       tags:
@@ -515,7 +1460,6 @@ paths:
         required: true
       security:
       - bearerAuth: []
-      - {}
       responses:
         '201':
           content:
@@ -523,6 +1467,51 @@ paths:
               schema:
                 $ref: '#/components/schemas/PollDetail'
           description: ''
+        '400':
+          description: Ошибка входных данных. См. поля формы или detail.
+          content:
+            application/json:
+              schema:
+                anyOf:
+                - $ref: '#/components/schemas/ApiError'
+                - $ref: '#/components/schemas/ValidationErrors'
+        '401':
+          description: Нужен действующий access-токен; для refresh — действующий refresh-токен.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '403':
+          description: Недостаточно прав или действие запрещено состоянием опроса.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '404':
+          description: Объект не найден.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '409':
+          description: Конфликт, например занятый никнейм или запрещённое перепрохождение.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '415':
+          description: Неверный Content-Type. JSON для API, multipart/form-data для
+            аватара.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '429':
+          description: Слишком много запросов. Повторите после Retry-After секунд.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
   /api/polls/{slug}:
     get:
       operationId: polls_retrieve
@@ -544,6 +1533,51 @@ paths:
               schema:
                 $ref: '#/components/schemas/PollDetail'
           description: ''
+        '400':
+          description: Ошибка входных данных. См. поля формы или detail.
+          content:
+            application/json:
+              schema:
+                anyOf:
+                - $ref: '#/components/schemas/ApiError'
+                - $ref: '#/components/schemas/ValidationErrors'
+        '401':
+          description: Нужен действующий access-токен; для refresh — действующий refresh-токен.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '403':
+          description: Недостаточно прав или действие запрещено состоянием опроса.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '404':
+          description: Объект не найден.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '409':
+          description: Конфликт, например занятый никнейм или запрещённое перепрохождение.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '415':
+          description: Неверный Content-Type. JSON для API, multipart/form-data для
+            аватара.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '429':
+          description: Слишком много запросов. Повторите после Retry-After секунд.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
     patch:
       operationId: polls_partial_update
       parameters:
@@ -561,7 +1595,6 @@ paths:
               $ref: '#/components/schemas/PatchedPollInputRequest'
       security:
       - bearerAuth: []
-      - {}
       responses:
         '200':
           content:
@@ -569,6 +1602,51 @@ paths:
               schema:
                 $ref: '#/components/schemas/PollDetail'
           description: ''
+        '400':
+          description: Ошибка входных данных. См. поля формы или detail.
+          content:
+            application/json:
+              schema:
+                anyOf:
+                - $ref: '#/components/schemas/ApiError'
+                - $ref: '#/components/schemas/ValidationErrors'
+        '401':
+          description: Нужен действующий access-токен; для refresh — действующий refresh-токен.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '403':
+          description: Недостаточно прав или действие запрещено состоянием опроса.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '404':
+          description: Объект не найден.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '409':
+          description: Конфликт, например занятый никнейм или запрещённое перепрохождение.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '415':
+          description: Неверный Content-Type. JSON для API, multipart/form-data для
+            аватара.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '429':
+          description: Слишком много запросов. Повторите после Retry-After секунд.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
     delete:
       operationId: polls_destroy
       parameters:
@@ -581,10 +1659,54 @@ paths:
       - Опросы
       security:
       - bearerAuth: []
-      - {}
       responses:
         '204':
           description: No response body
+        '400':
+          description: Ошибка входных данных. См. поля формы или detail.
+          content:
+            application/json:
+              schema:
+                anyOf:
+                - $ref: '#/components/schemas/ApiError'
+                - $ref: '#/components/schemas/ValidationErrors'
+        '401':
+          description: Нужен действующий access-токен; для refresh — действующий refresh-токен.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '403':
+          description: Недостаточно прав или действие запрещено состоянием опроса.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '404':
+          description: Объект не найден.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '409':
+          description: Конфликт, например занятый никнейм или запрещённое перепрохождение.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '415':
+          description: Неверный Content-Type. JSON для API, multipart/form-data для
+            аватара.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '429':
+          description: Слишком много запросов. Повторите после Retry-After секунд.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
   /api/polls/{slug}/close:
     post:
       operationId: polls_close_create
@@ -605,6 +1727,51 @@ paths:
               schema:
                 $ref: '#/components/schemas/PollDetail'
           description: ''
+        '400':
+          description: Ошибка входных данных. См. поля формы или detail.
+          content:
+            application/json:
+              schema:
+                anyOf:
+                - $ref: '#/components/schemas/ApiError'
+                - $ref: '#/components/schemas/ValidationErrors'
+        '401':
+          description: Нужен действующий access-токен; для refresh — действующий refresh-токен.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '403':
+          description: Недостаточно прав или действие запрещено состоянием опроса.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '404':
+          description: Объект не найден.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '409':
+          description: Конфликт, например занятый никнейм или запрещённое перепрохождение.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '415':
+          description: Неверный Content-Type. JSON для API, multipart/form-data для
+            аватара.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '429':
+          description: Слишком много запросов. Повторите после Retry-After секунд.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
   /api/polls/{slug}/comments:
     get:
       operationId: polls_comments_retrieve
@@ -634,6 +1801,51 @@ paths:
               schema:
                 $ref: '#/components/schemas/CommentPage'
           description: ''
+        '400':
+          description: Ошибка входных данных. См. поля формы или detail.
+          content:
+            application/json:
+              schema:
+                anyOf:
+                - $ref: '#/components/schemas/ApiError'
+                - $ref: '#/components/schemas/ValidationErrors'
+        '401':
+          description: Нужен действующий access-токен; для refresh — действующий refresh-токен.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '403':
+          description: Недостаточно прав или действие запрещено состоянием опроса.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '404':
+          description: Объект не найден.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '409':
+          description: Конфликт, например занятый никнейм или запрещённое перепрохождение.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '415':
+          description: Неверный Content-Type. JSON для API, multipart/form-data для
+            аватара.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '429':
+          description: Слишком много запросов. Повторите после Retry-After секунд.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
     post:
       operationId: polls_comments_create
       parameters:
@@ -652,7 +1864,6 @@ paths:
         required: true
       security:
       - bearerAuth: []
-      - {}
       responses:
         '201':
           content:
@@ -660,6 +1871,51 @@ paths:
               schema:
                 $ref: '#/components/schemas/Comment'
           description: ''
+        '400':
+          description: Ошибка входных данных. См. поля формы или detail.
+          content:
+            application/json:
+              schema:
+                anyOf:
+                - $ref: '#/components/schemas/ApiError'
+                - $ref: '#/components/schemas/ValidationErrors'
+        '401':
+          description: Нужен действующий access-токен; для refresh — действующий refresh-токен.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '403':
+          description: Недостаточно прав или действие запрещено состоянием опроса.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '404':
+          description: Объект не найден.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '409':
+          description: Конфликт, например занятый никнейм или запрещённое перепрохождение.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '415':
+          description: Неверный Content-Type. JSON для API, multipart/form-data для
+            аватара.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '429':
+          description: Слишком много запросов. Повторите после Retry-After секунд.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
   /api/polls/{slug}/export:
     get:
       operationId: polls_export_retrieve
@@ -684,11 +1940,64 @@ paths:
       responses:
         '200':
           content:
-            application/octet-stream:
+            text/csv:
+              schema:
+                type: string
+                format: binary
+            application/vnd.openxmlformats-officedocument.spreadsheetml.sheet:
+              schema:
+                type: string
+                format: binary
+            application/pdf:
               schema:
                 type: string
                 format: binary
           description: ''
+        '400':
+          description: Ошибка входных данных. См. поля формы или detail.
+          content:
+            application/json:
+              schema:
+                anyOf:
+                - $ref: '#/components/schemas/ApiError'
+                - $ref: '#/components/schemas/ValidationErrors'
+        '401':
+          description: Нужен действующий access-токен; для refresh — действующий refresh-токен.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '403':
+          description: Недостаточно прав или действие запрещено состоянием опроса.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '404':
+          description: Объект не найден.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '409':
+          description: Конфликт, например занятый никнейм или запрещённое перепрохождение.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '415':
+          description: Неверный Content-Type. JSON для API, multipart/form-data для
+            аватара.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '429':
+          description: Слишком много запросов. Повторите после Retry-After секунд.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
   /api/polls/{slug}/publish:
     post:
       operationId: polls_publish_create
@@ -714,6 +2023,51 @@ paths:
               schema:
                 $ref: '#/components/schemas/PollDetail'
           description: ''
+        '400':
+          description: Ошибка входных данных. См. поля формы или detail.
+          content:
+            application/json:
+              schema:
+                anyOf:
+                - $ref: '#/components/schemas/ApiError'
+                - $ref: '#/components/schemas/ValidationErrors'
+        '401':
+          description: Нужен действующий access-токен; для refresh — действующий refresh-токен.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '403':
+          description: Недостаточно прав или действие запрещено состоянием опроса.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '404':
+          description: Объект не найден.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '409':
+          description: Конфликт, например занятый никнейм или запрещённое перепрохождение.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '415':
+          description: Неверный Content-Type. JSON для API, multipart/form-data для
+            аватара.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '429':
+          description: Слишком много запросов. Повторите после Retry-After секунд.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
   /api/polls/{slug}/results:
     get:
       operationId: polls_results_retrieve
@@ -735,6 +2089,51 @@ paths:
               schema:
                 $ref: '#/components/schemas/Results'
           description: ''
+        '400':
+          description: Ошибка входных данных. См. поля формы или detail.
+          content:
+            application/json:
+              schema:
+                anyOf:
+                - $ref: '#/components/schemas/ApiError'
+                - $ref: '#/components/schemas/ValidationErrors'
+        '401':
+          description: Нужен действующий access-токен; для refresh — действующий refresh-токен.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '403':
+          description: Недостаточно прав или действие запрещено состоянием опроса.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '404':
+          description: Объект не найден.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '409':
+          description: Конфликт, например занятый никнейм или запрещённое перепрохождение.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '415':
+          description: Неверный Content-Type. JSON для API, multipart/form-data для
+            аватара.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '429':
+          description: Слишком много запросов. Повторите после Retry-After секунд.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
   /api/polls/{slug}/vote:
     post:
       operationId: polls_vote_create
@@ -762,6 +2161,51 @@ paths:
               schema:
                 $ref: '#/components/schemas/Results'
           description: ''
+        '400':
+          description: Ошибка входных данных. См. поля формы или detail.
+          content:
+            application/json:
+              schema:
+                anyOf:
+                - $ref: '#/components/schemas/ApiError'
+                - $ref: '#/components/schemas/ValidationErrors'
+        '401':
+          description: Нужен действующий access-токен; для refresh — действующий refresh-токен.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '403':
+          description: Недостаточно прав или действие запрещено состоянием опроса.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '404':
+          description: Объект не найден.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '409':
+          description: Конфликт, например занятый никнейм или запрещённое перепрохождение.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '415':
+          description: Неверный Content-Type. JSON для API, multipart/form-data для
+            аватара.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '429':
+          description: Слишком много запросов. Повторите после Retry-After секунд.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
   /api/polls/{slug}/voters:
     get:
       operationId: polls_voters_retrieve
@@ -790,6 +2234,51 @@ paths:
               schema:
                 $ref: '#/components/schemas/VoterPage'
           description: ''
+        '400':
+          description: Ошибка входных данных. См. поля формы или detail.
+          content:
+            application/json:
+              schema:
+                anyOf:
+                - $ref: '#/components/schemas/ApiError'
+                - $ref: '#/components/schemas/ValidationErrors'
+        '401':
+          description: Нужен действующий access-токен; для refresh — действующий refresh-токен.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '403':
+          description: Недостаточно прав или действие запрещено состоянием опроса.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '404':
+          description: Объект не найден.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '409':
+          description: Конфликт, например занятый никнейм или запрещённое перепрохождение.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '415':
+          description: Неверный Content-Type. JSON для API, multipart/form-data для
+            аватара.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '429':
+          description: Слишком много запросов. Повторите после Retry-After секунд.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
   /api/reports:
     post:
       operationId: reports_create
@@ -810,6 +2299,51 @@ paths:
               schema:
                 $ref: '#/components/schemas/Report'
           description: ''
+        '400':
+          description: Ошибка входных данных. См. поля формы или detail.
+          content:
+            application/json:
+              schema:
+                anyOf:
+                - $ref: '#/components/schemas/ApiError'
+                - $ref: '#/components/schemas/ValidationErrors'
+        '401':
+          description: Нужен действующий access-токен; для refresh — действующий refresh-токен.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '403':
+          description: Недостаточно прав или действие запрещено состоянием опроса.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '404':
+          description: Объект не найден.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '409':
+          description: Конфликт, например занятый никнейм или запрещённое перепрохождение.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '415':
+          description: Неверный Content-Type. JSON для API, multipart/form-data для
+            аватара.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '429':
+          description: Слишком много запросов. Повторите после Retry-After секунд.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
   /api/users/{id}:
     get:
       operationId: users_retrieve
@@ -831,6 +2365,51 @@ paths:
               schema:
                 $ref: '#/components/schemas/PublicUser'
           description: ''
+        '400':
+          description: Ошибка входных данных. См. поля формы или detail.
+          content:
+            application/json:
+              schema:
+                anyOf:
+                - $ref: '#/components/schemas/ApiError'
+                - $ref: '#/components/schemas/ValidationErrors'
+        '401':
+          description: Нужен действующий access-токен; для refresh — действующий refresh-токен.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '403':
+          description: Недостаточно прав или действие запрещено состоянием опроса.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '404':
+          description: Объект не найден.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '409':
+          description: Конфликт, например занятый никнейм или запрещённое перепрохождение.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '415':
+          description: Неверный Content-Type. JSON для API, multipart/form-data для
+            аватара.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '429':
+          description: Слишком много запросов. Повторите после Retry-After секунд.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
   /api/users/{id}/polls:
     get:
       operationId: users_polls_retrieve
@@ -872,6 +2451,51 @@ paths:
               schema:
                 $ref: '#/components/schemas/PollPage'
           description: ''
+        '400':
+          description: Ошибка входных данных. См. поля формы или detail.
+          content:
+            application/json:
+              schema:
+                anyOf:
+                - $ref: '#/components/schemas/ApiError'
+                - $ref: '#/components/schemas/ValidationErrors'
+        '401':
+          description: Нужен действующий access-токен; для refresh — действующий refresh-токен.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '403':
+          description: Недостаточно прав или действие запрещено состоянием опроса.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '404':
+          description: Объект не найден.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '409':
+          description: Конфликт, например занятый никнейм или запрещённое перепрохождение.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '415':
+          description: Неверный Content-Type. JSON для API, multipart/form-data для
+            аватара.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '429':
+          description: Слишком много запросов. Повторите после Retry-After секунд.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
   /api/users/me:
     get:
       operationId: users_me_retrieve
@@ -886,6 +2510,51 @@ paths:
               schema:
                 $ref: '#/components/schemas/Profile'
           description: ''
+        '400':
+          description: Ошибка входных данных. См. поля формы или detail.
+          content:
+            application/json:
+              schema:
+                anyOf:
+                - $ref: '#/components/schemas/ApiError'
+                - $ref: '#/components/schemas/ValidationErrors'
+        '401':
+          description: Нужен действующий access-токен; для refresh — действующий refresh-токен.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '403':
+          description: Недостаточно прав или действие запрещено состоянием опроса.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '404':
+          description: Объект не найден.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '409':
+          description: Конфликт, например занятый никнейм или запрещённое перепрохождение.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '415':
+          description: Неверный Content-Type. JSON для API, multipart/form-data для
+            аватара.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '429':
+          description: Слишком много запросов. Повторите после Retry-After секунд.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
     patch:
       operationId: users_me_partial_update
       tags:
@@ -904,6 +2573,51 @@ paths:
               schema:
                 $ref: '#/components/schemas/Profile'
           description: ''
+        '400':
+          description: Ошибка входных данных. См. поля формы или detail.
+          content:
+            application/json:
+              schema:
+                anyOf:
+                - $ref: '#/components/schemas/ApiError'
+                - $ref: '#/components/schemas/ValidationErrors'
+        '401':
+          description: Нужен действующий access-токен; для refresh — действующий refresh-токен.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '403':
+          description: Недостаточно прав или действие запрещено состоянием опроса.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '404':
+          description: Объект не найден.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '409':
+          description: Конфликт, например занятый никнейм или запрещённое перепрохождение.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '415':
+          description: Неверный Content-Type. JSON для API, multipart/form-data для
+            аватара.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '429':
+          description: Слишком много запросов. Повторите после Retry-After секунд.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
   /api/users/me/avatar:
     post:
       operationId: users_me_avatar_create
@@ -927,6 +2641,51 @@ paths:
               schema:
                 $ref: '#/components/schemas/Profile'
           description: ''
+        '400':
+          description: Ошибка входных данных. См. поля формы или detail.
+          content:
+            application/json:
+              schema:
+                anyOf:
+                - $ref: '#/components/schemas/ApiError'
+                - $ref: '#/components/schemas/ValidationErrors'
+        '401':
+          description: Нужен действующий access-токен; для refresh — действующий refresh-токен.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '403':
+          description: Недостаточно прав или действие запрещено состоянием опроса.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '404':
+          description: Объект не найден.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '409':
+          description: Конфликт, например занятый никнейм или запрещённое перепрохождение.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '415':
+          description: Неверный Content-Type. JSON для API, multipart/form-data для
+            аватара.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '429':
+          description: Слишком много запросов. Повторите после Retry-After секунд.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
     delete:
       operationId: users_me_avatar_destroy
       tags:
@@ -936,6 +2695,51 @@ paths:
       responses:
         '204':
           description: No response body
+        '400':
+          description: Ошибка входных данных. См. поля формы или detail.
+          content:
+            application/json:
+              schema:
+                anyOf:
+                - $ref: '#/components/schemas/ApiError'
+                - $ref: '#/components/schemas/ValidationErrors'
+        '401':
+          description: Нужен действующий access-токен; для refresh — действующий refresh-токен.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '403':
+          description: Недостаточно прав или действие запрещено состоянием опроса.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '404':
+          description: Объект не найден.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '409':
+          description: Конфликт, например занятый никнейм или запрещённое перепрохождение.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '415':
+          description: Неверный Content-Type. JSON для API, multipart/form-data для
+            аватара.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '429':
+          description: Слишком много запросов. Повторите после Retry-After секунд.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
   /api/users/me/password:
     post:
       operationId: users_me_password_create
@@ -956,6 +2760,51 @@ paths:
               schema:
                 $ref: '#/components/schemas/Tokens'
           description: ''
+        '400':
+          description: Ошибка входных данных. См. поля формы или detail.
+          content:
+            application/json:
+              schema:
+                anyOf:
+                - $ref: '#/components/schemas/ApiError'
+                - $ref: '#/components/schemas/ValidationErrors'
+        '401':
+          description: Нужен действующий access-токен; для refresh — действующий refresh-токен.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '403':
+          description: Недостаточно прав или действие запрещено состоянием опроса.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '404':
+          description: Объект не найден.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '409':
+          description: Конфликт, например занятый никнейм или запрещённое перепрохождение.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '415':
+          description: Неверный Content-Type. JSON для API, multipart/form-data для
+            аватара.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '429':
+          description: Слишком много запросов. Повторите после Retry-After секунд.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
   /api/users/me/polls:
     get:
       operationId: users_me_polls_retrieve
@@ -991,6 +2840,51 @@ paths:
               schema:
                 $ref: '#/components/schemas/PollPage'
           description: ''
+        '400':
+          description: Ошибка входных данных. См. поля формы или detail.
+          content:
+            application/json:
+              schema:
+                anyOf:
+                - $ref: '#/components/schemas/ApiError'
+                - $ref: '#/components/schemas/ValidationErrors'
+        '401':
+          description: Нужен действующий access-токен; для refresh — действующий refresh-токен.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '403':
+          description: Недостаточно прав или действие запрещено состоянием опроса.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '404':
+          description: Объект не найден.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '409':
+          description: Конфликт, например занятый никнейм или запрещённое перепрохождение.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '415':
+          description: Неверный Content-Type. JSON для API, multipart/form-data для
+            аватара.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '429':
+          description: Слишком много запросов. Повторите после Retry-After секунд.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
   /api/users/me/responses:
     get:
       operationId: users_me_responses_retrieve
@@ -1014,6 +2908,51 @@ paths:
               schema:
                 $ref: '#/components/schemas/PollPage'
           description: ''
+        '400':
+          description: Ошибка входных данных. См. поля формы или detail.
+          content:
+            application/json:
+              schema:
+                anyOf:
+                - $ref: '#/components/schemas/ApiError'
+                - $ref: '#/components/schemas/ValidationErrors'
+        '401':
+          description: Нужен действующий access-токен; для refresh — действующий refresh-токен.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '403':
+          description: Недостаточно прав или действие запрещено состоянием опроса.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '404':
+          description: Объект не найден.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '409':
+          description: Конфликт, например занятый никнейм или запрещённое перепрохождение.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '415':
+          description: Неверный Content-Type. JSON для API, multipart/form-data для
+            аватара.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '429':
+          description: Слишком много запросов. Повторите после Retry-After секунд.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
   /api/users/me/warnings:
     get:
       operationId: users_me_warnings_retrieve
@@ -1037,6 +2976,51 @@ paths:
               schema:
                 $ref: '#/components/schemas/WarningPage'
           description: ''
+        '400':
+          description: Ошибка входных данных. См. поля формы или detail.
+          content:
+            application/json:
+              schema:
+                anyOf:
+                - $ref: '#/components/schemas/ApiError'
+                - $ref: '#/components/schemas/ValidationErrors'
+        '401':
+          description: Нужен действующий access-токен; для refresh — действующий refresh-токен.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '403':
+          description: Недостаточно прав или действие запрещено состоянием опроса.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '404':
+          description: Объект не найден.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '409':
+          description: Конфликт, например занятый никнейм или запрещённое перепрохождение.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '415':
+          description: Неверный Content-Type. JSON для API, multipart/form-data для
+            аватара.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '429':
+          description: Слишком много запросов. Повторите после Retry-After секунд.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
 components:
   schemas:
     AccessModeEnum:
@@ -1140,8 +3124,9 @@ components:
           maxLength: 1000
         likes_count:
           type: integer
-          maximum: 2147483647
-          minimum: -2147483648
+          maximum: 9223372036854775807
+          minimum: -9223372036854775808
+          format: int64
         created_at:
           type: string
           format: date-time
@@ -1242,8 +3227,9 @@ components:
           maxLength: 200
         position:
           type: integer
-          maximum: 32767
-          minimum: -32768
+          maximum: 9223372036854775807
+          minimum: -9223372036854775808
+          format: int64
       required:
       - id
       - position
@@ -1379,8 +3365,9 @@ components:
           $ref: '#/components/schemas/PublicUser'
         responses_count:
           type: integer
-          maximum: 2147483647
-          minimum: -2147483648
+          maximum: 9223372036854775807
+          minimum: -9223372036854775808
+          format: int64
         created_at:
           type: string
           format: date-time
@@ -1399,8 +3386,9 @@ components:
           nullable: true
         max_votes:
           type: integer
-          maximum: 2147483647
-          minimum: -2147483648
+          maximum: 9223372036854775807
+          minimum: -9223372036854775808
+          format: int64
           nullable: true
         updated_at:
           type: string
@@ -1427,8 +3415,7 @@ components:
         my_answers:
           type: array
           items:
-            type: object
-            additionalProperties: {}
+            $ref: '#/components/schemas/MyAnswer'
           readOnly: true
         results_available:
           type: boolean
@@ -1535,8 +3522,9 @@ components:
           $ref: '#/components/schemas/PublicUser'
         responses_count:
           type: integer
-          maximum: 2147483647
-          minimum: -2147483648
+          maximum: 9223372036854775807
+          minimum: -9223372036854775808
+          format: int64
         created_at:
           type: string
           format: date-time
@@ -1629,16 +3617,19 @@ components:
           $ref: '#/components/schemas/TypeEnum'
         min_choices:
           type: integer
-          maximum: 32767
-          minimum: -32768
+          maximum: 9223372036854775807
+          minimum: -9223372036854775808
+          format: int64
         max_choices:
           type: integer
-          maximum: 32767
-          minimum: -32768
+          maximum: 9223372036854775807
+          minimum: -9223372036854775808
+          format: int64
         position:
           type: integer
-          maximum: 32767
-          minimum: -32768
+          maximum: 9223372036854775807
+          minimum: -9223372036854775808
+          format: int64
         options:
           type: array
           items:
@@ -1988,6 +3979,18 @@ components:
       required:
       - auto_banned
       - warnings_count
+    ApiError:
+      type: object
+      required:
+      - detail
+      properties:
+        detail:
+          type: string
+    ValidationErrors:
+      type: object
+      additionalProperties: {}
+      description: Ошибки по именам полей. Вложенные формы возвращают объекты и списки;
+        общие ошибки — non_field_errors.
   securitySchemes:
     bearerAuth:
       type: http

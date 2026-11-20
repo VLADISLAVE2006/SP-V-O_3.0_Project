@@ -192,7 +192,7 @@ docker compose -p codex-polls-er4 down
 
 ## Проверки
 
-Для первоначальной версии **все 47 тестов прошли на PostgreSQL**. Проверяются API, права доступа, ограничения БД, анонимность, отзыв токенов, WebSocket и одновременные запросы.
+Для первоначальной версии **все 56 тестов прошли на PostgreSQL**. Проверяются API, права доступа, ограничения БД, анонимность, отзыв токенов, WebSocket и одновременные запросы.
 
 ```powershell
 docker compose -p codex-polls-er4 exec backend python manage.py test --verbosity 2
@@ -209,3 +209,14 @@ docker compose -p codex-polls-er4 exec backend python -m ruff check .
 - Подготовлены Swagger, OpenAPI и инструкция для разработчика фронтенда.
 - Подключение и совместная проверка фронтенда — следующий этап.
 - Перед размещением на внешнем сервере требуется настроить HTTPS, домены, раздачу файлов и резервное копирование. Подробности приведены в [инструкции по бэкенду](backend/README.md#перед-размещением-на-сервере).
+
+
+## Для дальнейшей работы команды
+
+| Участник | С чего начать |
+| --- | --- |
+| Фронтенд-разработчик | [Подключение API и WebSocket](backend/FRONTEND.md), [актуальный OpenAPI](backend/openapi.yaml) |
+| Тестировщик | [Демо-аккаунты и сценарии](backend/TESTING.md), [коллекция Postman](backend/postman/polls.postman_collection.json) |
+| Бэкенд-разработчик | [Правила доработки, миграции и контракт API](backend/DEVELOPMENT.md) |
+
+Демо-данные: из папки `backend` выполните `docker compose -p codex-polls-er4 exec backend python manage.py seed_demo`. Полная проверка проекта в PowerShell: `./scripts/check.ps1`. Пересобирайте контейнеры после изменения исходников.

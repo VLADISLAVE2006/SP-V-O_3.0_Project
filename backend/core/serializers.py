@@ -1,5 +1,7 @@
 from django.contrib.auth.password_validation import validate_password
+from django.core.exceptions import ValidationError as DjangoValidationError
 from django.db import transaction
+from drf_spectacular.utils import extend_schema_field
 from rest_framework import serializers
 
 from .models import Ban, Comment, Option, Poll, Question, Report, User, Warning
@@ -50,7 +52,10 @@ class RegisterSerializer(StrictSerializer):
     def validate(self, attrs):
         if attrs["password"] != attrs["password_confirm"]:
             raise serializers.ValidationError({"password_confirm": "Пароли не совпадают."})
-        validate_password(attrs["password"], User(email=attrs["email"], nickname=attrs["nickname"]))
+        try:
+            validate_password(attrs["password"], User(email=attrs["email"], nickname=attrs["nickname"]))
+        except DjangoValidationError as exc:
+            raise serializers.ValidationError({"password": exc.messages})
         attrs["email"] = attrs["email"].lower()
         return attrs
 
@@ -85,7 +90,10 @@ class PasswordSerializer(StrictSerializer):
     def validate(self, attrs):
         if attrs["new_password"] != attrs["new_password_confirm"]:
             raise serializers.ValidationError({"new_password_confirm": "Пароли не совпадают."})
-        validate_password(attrs["new_password"], self.context["request"].user)
+        try:
+            validate_password(attrs["new_password"], self.context["request"].user)
+        except DjangoValidationError as exc:
+            raise serializers.ValidationError({"new_password": exc.messages})
         return attrs
 
 
@@ -115,6 +123,12 @@ class QuestionSerializer(serializers.ModelSerializer):
 class OptionInputSerializer(StrictSerializer):
     text = serializers.CharField(max_length=200)
 
+    def validate(self, attrs):
+        # PATCH makes nested fields optional in DRF, but questions are replaced as a whole.
+        if "text" not in attrs:
+            raise serializers.ValidationError({"text": ["Обязательное поле."]})
+        return attrs
+
 
 class QuestionInputSerializer(StrictSerializer):
     text = serializers.CharField(max_length=300)
@@ -124,6 +138,9 @@ class QuestionInputSerializer(StrictSerializer):
     options = OptionInputSerializer(many=True, required=False)
 
     def validate(self, attrs):
+        missing = {field: ["Обязательное поле."] for field in ("text", "type") if field not in attrs}
+        if missing:
+            raise serializers.ValidationError(missing)
         attrs.setdefault("min_choices", 1)
         attrs.setdefault("max_choices", 1)
         if attrs["type"] == "scale":
@@ -237,7 +254,8 @@ class PollDetailSerializer(PollSummarySerializer):
             obj.author_id == self.context["request"].user.pk or self._response(obj) is not None
         )
 
-    def get_my_answers(self, obj) -> list[dict]:
+    @extend_schema_field(MyAnswerSerializer(many=True))
+    def get_my_answers(self, obj):
         from .services import response_answers
 
         response = self._response(obj)

@@ -97,6 +97,10 @@ SPECTACULAR_SETTINGS = {
     "SWAGGER_UI_DIST": "SIDECAR",
     "SWAGGER_UI_FAVICON_HREF": "SIDECAR",
     "COMPONENT_SPLIT_REQUEST": True,
+    "POSTPROCESSING_HOOKS": [
+        "drf_spectacular.hooks.postprocess_schema_enums",
+        "core.schema.document_errors",
+    ],
     "ENUM_NAME_OVERRIDES": {
         "PollStatusEnum": ["draft", "active", "finished"],
         "ReportStatusEnum": ["new", "accepted", "rejected"],
@@ -107,6 +111,7 @@ CORS_ALLOWED_ORIGINS = os.environ.get(
     "CORS_ALLOWED_ORIGINS", "http://localhost:5173,http://127.0.0.1:5173"
 ).split(",")
 CORS_ALLOW_CREDENTIALS = True
+CORS_EXPOSE_HEADERS = ["Content-Disposition", "Retry-After"]
 COOKIE_SECURE = os.environ.get("COOKIE_SECURE", "1") == "1"
 COOKIE_SAMESITE = os.environ.get("COOKIE_SAMESITE", "Lax")
 AUTH_PASSWORD_VALIDATORS = [
