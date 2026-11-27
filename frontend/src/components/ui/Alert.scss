@@ -1,0 +1,45 @@
+.alert {
+  display: flex;
+  align-items: flex-start;
+  gap: $space-3;
+  padding: $space-3 $space-4;
+  border-radius: $radius;
+  font-size: $text-sm;
+  line-height: 1.5;
+  margin-bottom: $space-4;
+
+  &-title {
+    display: block;
+    margin-bottom: $space-1;
+    font-weight: $font-semibold;
+    color: inherit;
+  }
+
+  &-message {
+    color: inherit;
+  }
+
+  &-success {
+    background-color: rgba(16, 185, 129, 0.1);
+    border: 1px solid rgba(16, 185, 129, 0.3);
+    color: $success-hover;
+  }
+
+  &-error {
+    background-color: rgba(239, 68, 68, 0.1);
+    border: 1px solid rgba(239, 68, 68, 0.3);
+    color: $danger-hover;
+  }
+
+  &-warning {
+    background-color: rgba(245, 158, 11, 0.1);
+    border: 1px solid rgba(245, 158, 11, 0.3);
+    color: $warning-hover;
+  }
+
+  &-info {
+    background-color: rgba(59, 130, 246, 0.1);
+    border: 1px solid rgba(59, 130, 246, 0.3);
+    color: $info-hover;
+  }
+}

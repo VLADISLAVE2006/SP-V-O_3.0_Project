@@ -1,0 +1,39 @@
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.1875rem 0.625rem;
+  font-size: $text-xs;
+  font-weight: $font-medium;
+  border-radius: $radius-sm;
+  line-height: 1;
+
+  &-default {
+    background-color: $bg-tertiary;
+    color: $text-primary;
+  }
+
+  &-success {
+    background-color: rgba(16, 185, 129, 0.1);
+    color: $success-hover;
+  }
+
+  &-warning {
+    background-color: rgba(245, 158, 11, 0.1);
+    color: $warning-hover;
+  }
+
+  &-danger {
+    background-color: rgba(239, 68, 68, 0.1);
+    color: $danger-hover;
+  }
+
+  &-info {
+    background-color: rgba(59, 130, 246, 0.1);
+    color: $info-hover;
+  }
+
+  &-secondary {
+    background-color: $bg-tertiary;
+    color: $text-secondary;
+  }
+}

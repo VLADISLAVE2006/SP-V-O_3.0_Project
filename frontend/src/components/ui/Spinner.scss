@@ -1,0 +1,47 @@
+.spinner {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: $primary;
+
+  &-sm {
+    width: 1rem;
+    height: 1rem;
+
+    .spinner-svg {
+      width: 1rem;
+      height: 1rem;
+      stroke-width: 2;
+    }
+  }
+
+  &-md {
+    width: 1.5rem;
+    height: 1.5rem;
+
+    .spinner-svg {
+      width: 1.5rem;
+      height: 1.5rem;
+    }
+  }
+
+  &-lg {
+    width: 2rem;
+    height: 2rem;
+
+    .spinner-svg {
+      width: 2rem;
+      height: 2rem;
+    }
+  }
+
+  .spinner-svg {
+    animation: spinner-rotate 0.8s linear infinite;
+  }
+
+  @keyframes spinner-rotate {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+}

@@ -1,0 +1,66 @@
+.btn {
+  &--primary {
+    background-color: $primary;
+    color: #fff;
+    border: none;
+
+    &:hover {
+      background-color: $primary-hover;
+    }
+  }
+
+  &--secondary {
+    background-color: $secondary;
+    color: #fff;
+    border: none;
+
+    &:hover {
+      background-color: $secondary-hover;
+    }
+  }
+
+  &--outline {
+    background-color: transparent;
+    border: 1px solid $border-color;
+    color: $text-primary;
+
+    &:hover {
+      background-color: $bg-tertiary;
+    }
+  }
+
+  &--ghost {
+    background-color: transparent;
+    border: none;
+    color: $text-primary;
+
+    &:hover {
+      background-color: $bg-tertiary;
+    }
+  }
+
+  &--danger {
+    background-color: $danger;
+    color: #fff;
+    border: none;
+
+    &:hover {
+      background-color: $danger-hover;
+    }
+  }
+
+  &--sm {
+    padding: $space-1 $space-2;
+    font-size: $text-xs;
+  }
+
+  &--md {
+    padding: $space-2 $space-4;
+    font-size: $text-base;
+  }
+
+  &--lg {
+    padding: $space-3 $space-6;
+    font-size: $text-lg;
+  }
+}

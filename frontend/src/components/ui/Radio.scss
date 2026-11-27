@@ -1,0 +1,62 @@
+.radio-field {
+  display: flex;
+  flex-direction: column;
+  gap: $space-2;
+  font-size: $text-base;
+  color: $text-primary;
+}
+
+.radio-label {
+  font-weight: $font-medium;
+}
+
+.radio-options {
+  display: flex;
+  flex-direction: column;
+  gap: $space-2;
+}
+
+.radio-option {
+  display: flex;
+  align-items: center;
+  gap: $space-2;
+  cursor: pointer;
+
+  &-disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+.radio-input {
+  width: 1rem;
+  height: 1rem;
+  margin: 0;
+  accent-color: $primary;
+  cursor: pointer;
+}
+
+.radio-custom {
+  width: 1rem;
+  height: 1rem;
+  border: 2px solid $border-color;
+  border-radius: 50%;
+  background-color: $bg-primary;
+  transition: border-color $transition-fast;
+
+  .radio-option:has(.radio-input:checked) & {
+    border-color: $primary;
+    background-color: $primary;
+    box-shadow: 0 0 0 4px $primary-light;
+  }
+}
+
+.radio-text {
+  cursor: pointer;
+  user-select: none;
+}
+
+.input-error-text {
+  font-size: $text-xs;
+  color: $danger;
+}
